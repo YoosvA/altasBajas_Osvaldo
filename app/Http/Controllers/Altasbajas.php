@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Altabaja;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -43,7 +44,8 @@ class Altasbajas extends Controller
     public function create()
     {
         $titulo = 'Agregar';
-        return view('create', compact('titulo'));
+        $items = Categoria::all();
+        return view('create', compact('titulo', 'items'));
     }
 
     /**
@@ -86,8 +88,9 @@ class Altasbajas extends Controller
     public function edit($id)
     {
         $titulo = 'Actualizar';
+        $items2 = Categoria::all();
         $items = Altabaja::find($id);
-        return view('edit', compact('items', 'titulo'));
+        return view('edit', compact('items', 'titulo','items2'));
     }
 
     /**
